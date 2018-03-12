@@ -1,9 +1,12 @@
 package kulkarni.aditya.nowplayinghistory;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -51,10 +55,22 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        LinearLayout songLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.song_title);
+            songLayout = itemView.findViewById(R.id.song_layout);
+            songLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String songTitle = songList.get(getAdapterPosition());
+                    ClipboardManager clipboardManager = (ClipboardManager)mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("Song name", songTitle);
+                    clipboardManager.setPrimaryClip(clip);
+                    Toast.makeText(mContext,"Copied to clipboard.",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

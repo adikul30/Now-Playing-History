@@ -22,6 +22,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -70,21 +73,6 @@ public class MainActivity extends AppCompatActivity {
         songAdapter = new SongAdapter(songList,this);
         recyclerView.setAdapter(songAdapter);
 
-        new getSongs().execute();
-
-//        generateNotification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-//                        .setSmallIcon(R.drawable.ic_notifications)
-//                        .setContentTitle("Something new")
-//                        .setContentText("Trying something new after a long time")
-//                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//
-//
-//                notificationManager.notify(1, mBuilder.build());
-//            }
-//        });
     }
 
     private boolean isNotificationServiceEnabled(){
@@ -150,4 +138,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new getSongs().execute();
+    }
 }

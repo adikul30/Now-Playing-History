@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kulkarni.aditya.nowplayinghistory">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -26,6 +27,10 @@
             </intent-filter>
         </service>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="55514a1d8516ae87d2b3ebf2e9c55b6085570edd" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

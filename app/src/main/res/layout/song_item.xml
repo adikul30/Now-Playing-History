@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/song_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <TextView
+        android:layout_toStartOf="@id/clipboard_action"
+        android:layout_toLeftOf="@id/clipboard_action"
         android:id="@+id/song_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_family"
         android:padding="8dp"
         android:text="The Scientist By Coldplay"
-        android:textColor="@android:color/black"
+        android:textColor="#424242"
         android:textSize="20sp"
         android:textStyle="italic" />
+
+    <ImageView
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_content_copy"
+        android:id="@+id/clipboard_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#9e9e9e" />
 
-</LinearLayout>
+</RelativeLayout>
